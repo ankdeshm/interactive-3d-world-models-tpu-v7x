@@ -1,0 +1,618 @@
+{
+  "Skywork/Matrix-Game-4.0": {
+    "spec": {
+      "short": "Matrix-Game-4.0",
+      "category": "Interactive Action-Conditioned 3D Game Engine (FPS Castle / Egypt / Racing)",
+      "arch": "CausalWanModel-5B + TAEW2.2 Streaming VAE",
+      "n_layers": 30,
+      "d_model": 3072,
+      "n_heads": 24,
+      "head_dim": 128,
+      "ffn_dim": 14336,
+      "has_action_xattn": true,
+      "has_rgbd_dual": false,
+      "is_pano_3d": false,
+      "default_steps": 4,
+      "window_frames": 64,
+      "target_gib": 10.2
+    },
+    "num_safetensors_files": 3,
+    "num_pt_checkpoints": 9,
+    "pt_files": [
+      "base/taew2_2.pth",
+      "driving_game/vae_decoder/decoder.pth",
+      "game/assets/castle-map.bin",
+      "game/assets/maps/ancient-egypt/castle-map.bin",
+      "racing/assets/bbox-assets.bin",
+      "racing/assets/caption-labels.bin",
+      "racing/assets/reference-building-stripes.bin",
+      "racing/assets/reference-junction-surfaces.bin"
+    ],
+    "total_weight_gib": 28.13,
+    "dtypes_histogram": {
+      "BF16": 2475
+    },
+    "sample_tensors": {
+      "model.safetensors:model.blocks.0.cross_attn.k.bias": {
+        "shape": [
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.cross_attn.k.weight": {
+        "shape": [
+          3072,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.cross_attn.norm_k.weight": {
+        "shape": [
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.cross_attn.norm_q.weight": {
+        "shape": [
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.cross_attn.o.bias": {
+        "shape": [
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.cross_attn.o.weight": {
+        "shape": [
+          3072,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.cross_attn.q.bias": {
+        "shape": [
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.cross_attn.q.weight": {
+        "shape": [
+          3072,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.cross_attn.v.bias": {
+        "shape": [
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.cross_attn.v.weight": {
+        "shape": [
+          3072,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.ffn.0.bias": {
+        "shape": [
+          14336
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.ffn.0.weight": {
+        "shape": [
+          14336,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.ffn.2.bias": {
+        "shape": [
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.ffn.2.weight": {
+        "shape": [
+          3072,
+          14336
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.modulation": {
+        "shape": [
+          1,
+          6,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.norm3.bias": {
+        "shape": [
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.norm3.weight": {
+        "shape": [
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "model.safetensors:model.blocks.0.self_attn.k.bias": {
+        "shape": [
+          3072
+        ],
+        "dtype": "BF16"
+      }
+    },
+    "configs_found": [
+      "config.json"
+    ]
+  },
+  "Skywork/Matrix-Game-2.0": {
+    "spec": {
+      "short": "Matrix-Game-2.0",
+      "category": "Ultra-Low-Latency Distilled Interactive Game World Model",
+      "arch": "CausalWanModel-1.8B + Keyboard/Mouse Action Cross-Attn + Wan2.1 VAE",
+      "n_layers": 30,
+      "d_model": 1536,
+      "n_heads": 12,
+      "head_dim": 128,
+      "ffn_dim": 8960,
+      "has_action_xattn": true,
+      "has_rgbd_dual": false,
+      "is_pano_3d": false,
+      "default_steps": 4,
+      "window_frames": 64,
+      "target_gib": 6.8
+    },
+    "num_safetensors_files": 3,
+    "num_pt_checkpoints": 2,
+    "pt_files": [
+      "Wan2.1_VAE.pth",
+      "models_clip_open-clip-xlm-roberta-large-vit-huge-14.pth"
+    ],
+    "total_weight_gib": 19.97,
+    "dtypes_histogram": {
+      "F32": 2078,
+      "BF16": 1399
+    },
+    "sample_tensors": {
+      "base_distill.safetensors:model.blocks.0.action_model.img_attn_k_norm.weight": {
+        "shape": [
+          64
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.img_attn_q_norm.weight": {
+        "shape": [
+          64
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.key_attn_k_norm.weight": {
+        "shape": [
+          64
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.key_attn_q_norm.weight": {
+        "shape": [
+          64
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.keyboard_attn_kv.weight": {
+        "shape": [
+          2048,
+          1536
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.keyboard_embed.0.bias": {
+        "shape": [
+          128
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.keyboard_embed.0.weight": {
+        "shape": [
+          128,
+          4
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.keyboard_embed.2.bias": {
+        "shape": [
+          128
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.keyboard_embed.2.weight": {
+        "shape": [
+          128,
+          128
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.mouse_attn_q.weight": {
+        "shape": [
+          1024,
+          1536
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.mouse_mlp.0.bias": {
+        "shape": [
+          1024
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.mouse_mlp.0.weight": {
+        "shape": [
+          1024,
+          1560
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.mouse_mlp.2.bias": {
+        "shape": [
+          1024
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.mouse_mlp.2.weight": {
+        "shape": [
+          1024,
+          1024
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.mouse_mlp.3.bias": {
+        "shape": [
+          1024
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.mouse_mlp.3.weight": {
+        "shape": [
+          1024
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.proj_keyboard.weight": {
+        "shape": [
+          1536,
+          1024
+        ],
+        "dtype": "F32"
+      },
+      "base_distill.safetensors:model.blocks.0.action_model.proj_mouse.weight": {
+        "shape": [
+          1536,
+          1024
+        ],
+        "dtype": "F32"
+      }
+    },
+    "configs_found": [
+      "base_distilled_model/config.json",
+      "base_model/base_config.json",
+      "templerun_distilled_model/config.json",
+      "xlm-roberta-large/tokenizer_config.json"
+    ]
+  },
+  "tencent/HunyuanWorld-Voyager": {
+    "spec": {
+      "short": "HunyuanWorld-Voyager",
+      "category": "World-Consistent 3D Point-Cloud & RGB-D Camera-Controlled Explorer",
+      "arch": "HunyuanVideo-RGBD Dual/Single-Stream DiT (60L, 13B) + Causal3D VAE",
+      "n_layers": 60,
+      "d_model": 3072,
+      "n_heads": 24,
+      "head_dim": 128,
+      "ffn_dim": 12288,
+      "has_action_xattn": true,
+      "has_rgbd_dual": true,
+      "is_pano_3d": false,
+      "default_steps": 8,
+      "window_frames": 49,
+      "target_gib": 26.0
+    },
+    "num_safetensors_files": 5,
+    "num_pt_checkpoints": 4,
+    "pt_files": [
+      "Voyager/transformers/mp_rank_00_model_states.pt",
+      "Voyager/transformers/mp_rank_00_model_states_context.pt",
+      "hunyuan-video-i2v-720p/vae/pytorch_model.pt",
+      "text_encoder_2/pytorch_model.bin"
+    ],
+    "total_weight_gib": 76.96,
+    "dtypes_histogram": {
+      "I64": 2,
+      "F32": 594,
+      "F16": 560
+    },
+    "sample_tensors": {
+      "model.safetensors:text_model.embeddings.position_ids": {
+        "shape": [
+          1,
+          77
+        ],
+        "dtype": "I64"
+      },
+      "model.safetensors:vision_model.embeddings.position_ids": {
+        "shape": [
+          1,
+          257
+        ],
+        "dtype": "I64"
+      },
+      "model.safetensors:logit_scale": {
+        "shape": [],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.embeddings.position_embedding.weight": {
+        "shape": [
+          77,
+          768
+        ],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.embeddings.token_embedding.weight": {
+        "shape": [
+          49408,
+          768
+        ],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.encoder.layers.0.layer_norm1.bias": {
+        "shape": [
+          768
+        ],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.encoder.layers.0.layer_norm1.weight": {
+        "shape": [
+          768
+        ],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.encoder.layers.0.layer_norm2.bias": {
+        "shape": [
+          768
+        ],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.encoder.layers.0.layer_norm2.weight": {
+        "shape": [
+          768
+        ],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.encoder.layers.0.mlp.fc1.bias": {
+        "shape": [
+          3072
+        ],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.encoder.layers.0.mlp.fc1.weight": {
+        "shape": [
+          3072,
+          768
+        ],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.encoder.layers.0.mlp.fc2.bias": {
+        "shape": [
+          768
+        ],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.encoder.layers.0.mlp.fc2.weight": {
+        "shape": [
+          768,
+          3072
+        ],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.encoder.layers.0.self_attn.k_proj.bias": {
+        "shape": [
+          768
+        ],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.encoder.layers.0.self_attn.k_proj.weight": {
+        "shape": [
+          768,
+          768
+        ],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.encoder.layers.0.self_attn.out_proj.bias": {
+        "shape": [
+          768
+        ],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.encoder.layers.0.self_attn.out_proj.weight": {
+        "shape": [
+          768,
+          768
+        ],
+        "dtype": "F32"
+      },
+      "model.safetensors:text_model.encoder.layers.0.self_attn.q_proj.bias": {
+        "shape": [
+          768
+        ],
+        "dtype": "F32"
+      }
+    },
+    "configs_found": [
+      "hunyuan-video-i2v-720p/vae/config.json",
+      "text_encoder_2/config.json",
+      "text_encoder_2/preprocessor_config.json",
+      "text_encoder_2/tokenizer_config.json"
+    ]
+  },
+  "tencent/HunyuanWorld-1": {
+    "spec": {
+      "short": "HunyuanWorld-1",
+      "category": "360-Degree Panoramic & Layered Semantic 3D Mesh World Generator",
+      "arch": "HunyuanWorld-PanoDiT + PanoInpaint (Scene/Sky Rank-128 Multi-Stage 57L, d=3072)",
+      "n_layers": 57,
+      "d_model": 3072,
+      "n_heads": 24,
+      "head_dim": 128,
+      "ffn_dim": 12288,
+      "has_action_xattn": false,
+      "has_rgbd_dual": false,
+      "is_pano_3d": true,
+      "default_steps": 8,
+      "window_frames": 16,
+      "target_gib": 1.45
+    },
+    "num_safetensors_files": 4,
+    "num_pt_checkpoints": 0,
+    "pt_files": [],
+    "total_weight_gib": 1.45,
+    "dtypes_histogram": {
+      "BF16": 912
+    },
+    "sample_tensors": {
+      "lora.safetensors:double_blocks.0.processor.proj_lora1.down.weight": {
+        "shape": [
+          128,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.0.processor.proj_lora1.up.weight": {
+        "shape": [
+          3072,
+          128
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.0.processor.proj_lora2.down.weight": {
+        "shape": [
+          128,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.0.processor.proj_lora2.up.weight": {
+        "shape": [
+          3072,
+          128
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.0.processor.qkv_lora1.down.weight": {
+        "shape": [
+          128,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.0.processor.qkv_lora1.up.weight": {
+        "shape": [
+          9216,
+          128
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.0.processor.qkv_lora2.down.weight": {
+        "shape": [
+          128,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.0.processor.qkv_lora2.up.weight": {
+        "shape": [
+          9216,
+          128
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.1.processor.proj_lora1.down.weight": {
+        "shape": [
+          128,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.1.processor.proj_lora1.up.weight": {
+        "shape": [
+          3072,
+          128
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.1.processor.proj_lora2.down.weight": {
+        "shape": [
+          128,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.1.processor.proj_lora2.up.weight": {
+        "shape": [
+          3072,
+          128
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.1.processor.qkv_lora1.down.weight": {
+        "shape": [
+          128,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.1.processor.qkv_lora1.up.weight": {
+        "shape": [
+          9216,
+          128
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.1.processor.qkv_lora2.down.weight": {
+        "shape": [
+          128,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.1.processor.qkv_lora2.up.weight": {
+        "shape": [
+          9216,
+          128
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.10.processor.proj_lora1.down.weight": {
+        "shape": [
+          128,
+          3072
+        ],
+        "dtype": "BF16"
+      },
+      "lora.safetensors:double_blocks.10.processor.proj_lora1.up.weight": {
+        "shape": [
+          3072,
+          128
+        ],
+        "dtype": "BF16"
+      }
+    },
+    "configs_found": []
+  }
+}

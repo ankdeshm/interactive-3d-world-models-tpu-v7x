@@ -1,0 +1,38 @@
+# Cloud TPU v7x-16 (32 TensorCores, 3,072 GiB HBM3e, Topology 2x2x4)
+# Interactive 3D & Action-Conditioned Game World Models Serving Configuration
+
+slice:
+  accelerator: tpu-v7x
+  topology: 2x2x4
+  num_hosts: 4
+  chips_per_host: 4
+  tensorcores_per_chip: 2
+  total_physical_chips: 16
+  total_tensorcores: 32
+  hbm3e_capacity_gib: 3072
+
+streaming_engine:
+  attention_mode: causal_rolling_kv_cache
+  causal_chunk_frames: [4, 8, 16]
+  precision: FP8_E4M3FN
+  torch_compile: true
+  playability_slas_fps: [16.0, 24.0]
+  disaggregated_chunk_encoder: http://video-encode-svc.default.svc.cluster.local:8090/encode
+
+models:
+  - model_id: Skywork/Matrix-Game-4.0
+    architecture: CausalWanModel-5B (30L, d=3072, 24H, FFN=14336) + TAEW2.2 Streaming VAE
+    scenes: [fps-castle, fps-egypt, driving_game]
+    optimal_480p_sharding: DP=16 x Ulysses=2 (32 TC)
+    optimal_720p_sharding: DP=8 x Ulysses=4 (32 TC)
+  - model_id: Skywork/Matrix-Game-2.0
+    architecture: CausalWanModel-1.8B (30L, d=1536, 12H, FFN=8960) + Keyboard/Mouse Cross-Attention
+    optimal_480p_sharding: DP=16 x Ulysses=2 (32 TC)
+    optimal_720p_sharding: DP=16 x Ulysses=2 (32 TC)
+  - model_id: tencent/HunyuanWorld-Voyager
+    architecture: HunyuanVideo-RGBD Point-Cloud DiT (60L, d=3072, 24H, FFN=12288) + Causal3D VAE
+    optimal_480p_sharding: DP=8 x Ulysses=4 (32 TC)
+    optimal_720p_sharding: DP=8 x Ulysses=4 (32 TC)
+  - model_id: tencent/HunyuanWorld-1
+    architecture: HunyuanWorld-PanoDiT + PanoInpaint (Scene/Sky Rank-128, 57L, d=3072)
+    optimal_480p_sharding: DP=8 x Ulysses=4 (32 TC)

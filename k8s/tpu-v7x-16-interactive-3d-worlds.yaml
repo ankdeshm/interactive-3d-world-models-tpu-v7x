@@ -1,0 +1,94 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: interactive-3d-worlds-svc
+  namespace: default
+spec:
+  clusterIP: None
+  selector:
+    job-name: interactive-3d-worlds-v7x16
+  ports:
+    - name: agent
+      port: 19110
+      targetPort: 19110
+    - name: ici
+      port: 8471
+      targetPort: 8471
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: interactive-3d-worlds-v7x16
+  namespace: default
+spec:
+  completions: 4
+  parallelism: 4
+  completionMode: Indexed
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: interactive-3d-worlds-v7x16
+    spec:
+      subdomain: interactive-3d-worlds-svc
+      restartPolicy: Never
+      nodeSelector:
+        cloud.google.com/gke-accelerator: tpu-v7x
+        cloud.google.com/tpu-topology: 2x2x4
+      tolerations:
+        - key: google.com/tpu
+          operator: Exists
+          effect: NoSchedule
+      volumes:
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 700Gi
+        - name: models-cache
+          persistentVolumeClaim:
+            claimName: tpu-models-gcsfuse-pvc
+      containers:
+        - name: omni-v7x
+          image: us-central1-docker.pkg.dev/YOUR_GCP_PROJECT_ID/vllm/vllm-torchtpu-omni:v0.32.0
+          securityContext:
+            privileged: true
+          env:
+            - name: PJRT_DEVICE
+              value: "TPU"
+            - name: HF_HOME
+              value: "/dev/shm/hf_cache"
+            - name: TORCHINDUCTOR_CACHE_DIR
+              value: "/dev/shm/torchinductor"
+            - name: VIDEO_ENCODE_URL
+              value: "http://video-encode-svc.default.svc.cluster.local:8090"
+          resources:
+            requests:
+              google.com/tpu: "4"
+              cpu: "80"
+              memory: "750Gi"
+            limits:
+              google.com/tpu: "4"
+              cpu: "160"
+              memory: "860Gi"
+          volumeMounts:
+            - name: dshm
+              mountPath: /dev/shm
+            - name: models-cache
+              mountPath: /models
+              readOnly: true
+          command: ["bash", "-lc"]
+          args:
+            - |
+              set -euo pipefail
+              python3 /workspace/scripts/run_interactive_3d_worlds_v7x.py --mode=stage-shm \
+                --models-root=/models/models --shm-root=/dev/shm/world3d_models
+              python3 /workspace/scripts/run_interactive_3d_worlds_v7x.py --mode=host-agent \
+                --host-rank="${JOB_COMPLETION_INDEX}" --agent-port=19110 --shm-root=/dev/shm/world3d_models &
+              if [[ "${JOB_COMPLETION_INDEX}" == "0" ]]; then
+                sleep 15
+                EPS="http://interactive-3d-worlds-v7x16-0.interactive-3d-worlds-svc:19110,http://interactive-3d-worlds-v7x16-1.interactive-3d-worlds-svc:19110,http://interactive-3d-worlds-v7x16-2.interactive-3d-worlds-svc:19110,http://interactive-3d-worlds-v7x16-3.interactive-3d-worlds-svc:19110"
+                python3 /workspace/scripts/run_interactive_3d_worlds_v7x.py --mode=orchestrator \
+                  --host-endpoints="${EPS}" --shm-root=/dev/shm/world3d_models --out-dir=/workspace/results
+              else
+                wait
+              fi

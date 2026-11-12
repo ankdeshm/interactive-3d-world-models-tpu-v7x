@@ -1,0 +1,87 @@
+{
+  "generated_at_utc": "2026-11-04T16:56:01Z",
+  "accelerator": "Cloud TPU v7x (Ironwood)",
+  "slice_topology": "2x2x4 (4 hosts x 4 chips = 16 physical v7x chips = 32 TensorCores, 3,072 GiB HBM3e)",
+  "video_encode_offload_health": {
+    "status": "ok",
+    "hostname": "video-encode-svc-64cfdd7dcf-p2v2x",
+    "cpu_model": "Intel(R) Xeon(R) Platinum 8481C CPU @ 2.70GHz",
+    "vcpus": 44,
+    "total_jobs": 468,
+    "total_frames": 54142,
+    "total_encode_s": 954.918,
+    "avg_fps": 56.7
+  },
+  "max_concurrent_playable_streams_per_16chip_slice": {
+    "Matrix-Game-4.0_480p": {
+      "model": "Skywork/Matrix-Game-4.0",
+      "resolution": "832x480",
+      "optimal_sharding": "DP=16 x U=2 (32 TC)",
+      "denoise_steps": 4,
+      "max_concurrent_playable_streams_16fps": 32,
+      "max_concurrent_playable_streams_24fps": 32
+    },
+    "Matrix-Game-4.0_720p": {
+      "model": "Skywork/Matrix-Game-4.0",
+      "resolution": "1280x720",
+      "optimal_sharding": "DP=8 x U=4 (32 TC)",
+      "denoise_steps": 4,
+      "max_concurrent_playable_streams_16fps": 32,
+      "max_concurrent_playable_streams_24fps": 32
+    },
+    "Matrix-Game-2.0_480p": {
+      "model": "Skywork/Matrix-Game-2.0",
+      "resolution": "832x480",
+      "optimal_sharding": "DP=16 x U=2 (32 TC)",
+      "denoise_steps": 4,
+      "max_concurrent_playable_streams_16fps": 32,
+      "max_concurrent_playable_streams_24fps": 32
+    },
+    "Matrix-Game-2.0_720p": {
+      "model": "Skywork/Matrix-Game-2.0",
+      "resolution": "1280x720",
+      "optimal_sharding": "DP=16 x U=2 (32 TC)",
+      "denoise_steps": 4,
+      "max_concurrent_playable_streams_16fps": 32,
+      "max_concurrent_playable_streams_24fps": 32
+    },
+    "HunyuanWorld-Voyager_480p": {
+      "model": "tencent/HunyuanWorld-Voyager",
+      "resolution": "832x480",
+      "optimal_sharding": "DP=8 x U=4 (32 TC)",
+      "denoise_steps": 8,
+      "max_concurrent_playable_streams_16fps": 32,
+      "max_concurrent_playable_streams_24fps": 32
+    },
+    "HunyuanWorld-Voyager_720p": {
+      "model": "tencent/HunyuanWorld-Voyager",
+      "resolution": "1280x720",
+      "optimal_sharding": "DP=8 x U=4 (32 TC)",
+      "denoise_steps": 4,
+      "max_concurrent_playable_streams_16fps": 32,
+      "max_concurrent_playable_streams_24fps": 32
+    },
+    "HunyuanWorld-1_480p": {
+      "model": "tencent/HunyuanWorld-1",
+      "resolution": "832x480",
+      "optimal_sharding": "DP=8 x U=4 (32 TC)",
+      "denoise_steps": 8,
+      "max_concurrent_playable_streams_16fps": 32,
+      "max_concurrent_playable_streams_24fps": 32
+    },
+    "HunyuanWorld-1_720p": {
+      "model": "tencent/HunyuanWorld-1",
+      "resolution": "1280x720",
+      "optimal_sharding": "DP=8 x U=4 (32 TC)",
+      "denoise_steps": 4,
+      "max_concurrent_playable_streams_16fps": 32,
+      "max_concurrent_playable_streams_24fps": 32
+    }
+  },
+  "counts": {
+    "suite1_kv_ablation_rows": 152,
+    "suite2_sharding_rows": 66,
+    "suite3_concurrent_session_rows": 48,
+    "total_verified_rows": 266
+  }
+}
